@@ -1,1 +1,1 @@
-A project done by Frank and Nomcebo
+0x1B. C - Sorting algorithms & Big O

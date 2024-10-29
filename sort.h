@@ -17,13 +17,26 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-/* Prototypes */
+/**
+ * struct deck_node_s - Doubly linked list node for deck representation
+ * @n: Integer stored in the node, representing the card value
+ * @prev: Pointer to the previous element of the list
+ * @next: Pointer to the next element of the list
+ *
+ * Description: Node structure for a deck of cards represented as
+ * a doubly linked list for sorting operations.
+ */
+typedef struct deck_node_s
+{
+	int n;
+	struct deck_node_s *prev;
+	struct deck_node_s *next;
+} deck_node_t;
+
+/* Function Prototypes */
+void bubble_sort(int *array, size_t size);
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
-
-/* Sorting function prototypes */
-void quick_sort_hoare(int *array, size_t size);
-void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
@@ -35,14 +48,6 @@ void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-
-/* Helper functions for sorting */
-int len_list(listint_t *h);
-void switch_nodes(listint_t **list, listint_t **p);
-void merge_recursion(int *arr, int *array, size_t left, size_t right);
-void merge_subarray(int *arr, int *array, size_t left, size_t middle, size_t right);
-void heapify(int *array, size_t s, size_t root, size_t size);
-void count_sort_LSD(int *array, size_t size, size_t lsd);
+void sort_deck(deck_node_t **deck);
 
 #endif /* SORT_H */
-

@@ -1,58 +1,36 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
- * locate_min - locating the minimum from the current
- * index in the array
- * @array: the array to be searched
- * @index: starting index of the search
- * @size: the size of the array
- * Return: index of the minimum value found in the array segment
- * from the given index to the end. Returns -1 if the minimum
- * value is already at the given index.
+ * selection_sort - Sorts an array of integers in ascending order
+ *                  using the Selection sort algorithm.
+ * @array: Pointer to the array to sort.
+ * @size: The size of the array.
  */
-
-int locate_min(int *array, int index, size_t size)
-{
-	int minimum, idx_minimum;
-	int y;
-
-	minimum = array[index];
-	idx_minimum = index;
-	for (y = index; y < (int)size; y++)
-	{
-		if (array[y] < minimum)
-		{
-			minimum = array[y];
-			idx_minimum = y;
-		}
-	}
-	if (idx_minimum == index)
-		return (-1);
-	return (idx_minimum);
-}
-
-/**
- * selection_sort - implementation of selection sort algorthmn
- * @array: array to sort type int
- * @size: the size of the given array
- *
- * Return: void sorted array
- */
-
 void selection_sort(int *array, size_t size)
 {
-	int y;
-	int minimum, tmp;
+	size_t i, j, min_idx;
+	int temp;
 
-	for (y = 0; y < (int)size; y++)
+	if (!array || size < 2)
+		return;
+
+	for (i = 0; i < size - 1; i++)
 	{
-		minimum = locate_min(array, y, size);
-		if (minimum != -1)
+		min_idx = i;
+		for (j = i + 1; j < size; j++)
 		{
-			tmp = array[y];
-			array[y] = array[minimum];
-			array[minimum] = tmp;
-			print_array(array, size);
+			if (array[j] < array[min_idx])
+				min_idx = j;
+		}
+
+		/* Swap only if min_idx has changed */
+		if (min_idx != i)
+		{
+			temp = array[i];
+			array[i] = array[min_idx];
+			array[min_idx] = temp;
+			print_array(array, size);  /* Print after each swap */
 		}
 	}
 }
